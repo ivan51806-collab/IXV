@@ -228,7 +228,8 @@ section { padding: 84px 0; }
 .page-hero-content h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); }
 
 /* ===== Trust / feature icons ===== */
-.feature-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; background: var(--charcoal); justify-items: center; }
+.feature-row { background: var(--charcoal); }
+.feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; justify-items: center; }
 .feature-item { display: flex; align-items: center; gap: 16px; text-align: left; }
 .feature-icon {
   flex-shrink: 0; width: 52px; height: 52px; border-radius: 50%;
