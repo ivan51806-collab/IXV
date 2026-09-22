@@ -383,7 +383,7 @@ section { padding: 84px 0; }
 /* ===== Responsive ===== */
 @media (max-width: 900px) {
   section { padding: 56px 0; }
-  .feature-row { grid-template-columns: 1fr; gap: 26px; }
+  .feature-grid { grid-template-columns: 1fr; gap: 26px; }
   .split { grid-template-columns: 1fr; }
   .card-grid, .card-grid.cols-3 { grid-template-columns: repeat(2, 1fr); }
   .product-detail { grid-template-columns: 1fr; }
