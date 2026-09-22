@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Contact Us | IXV Landscape Design</title>
-<meta name="description" content="Request a free consultation from IXV Landscape Design. Call, email, or send your project details online.">
+<title>Your Quote List | IXV Landscape Design</title>
+<meta name="description" content="Review your selected products and services and submit for a free quote from IXV Landscape Design.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -50,8 +50,8 @@
       </li>
       <li><a href="about.html">About Us</a></li>
       <li><a href="portfolio.html">Portfolio</a></li>
-      <li class="active"><a href="contact.html">Contact Us</a></li>
-      <li><a href="cart.html">Shopping Cart</a></li>
+      <li><a href="contact.html">Contact Us</a></li>
+      <li class="active"><a href="cart.html">Shopping Cart</a></li>
     </ul>
     <div class="nav-right">
       <button class="cart-btn" data-cart-open aria-label="Open quote cart" type="button">
@@ -79,87 +79,62 @@
   </div>
 </div>
 
-<section class="page-hero">
-  <div class="page-hero-media"><img src="images/contact/contact-hero.jpg" alt="Fire and water feature"></div>
+<section class="page-hero" style="min-height:260px;">
   <div class="page-hero-content container">
-    <h1>Contact Us</h1>
-  </div>
-</section>
-
-<section>
-  <div class="container" style="max-width:520px;">
-    <h2 class="section-heading">Contact Details</h2>
-    <div class="feature-item" style="margin-top:26px;">
-      <div class="feature-icon" style="background:var(--white); color:var(--green-dark);">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z" opacity="0"/><path d="M22 6l-10 7L2 6"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg>
-      </div>
-      <div>
-        <h4>Our Email</h4>
-        <p><a href="mailto:xavier@ixvlandscapedesign.com" style="color:var(--gray-300);">xavier@ixvlandscapedesign.com</a></p>
-      </div>
-    </div>
-    <hr class="form-divider">
+    <h1>Your Quote List</h1>
   </div>
 </section>
 
 <section style="padding-top:0;">
-  <div class="container" style="max-width:640px;">
-    <h2 class="section-heading">Receive a Consultation!</h2>
-    <div class="form-success" id="form-success">Thanks! Your request has been received — we'll be in touch soon.</div>
-    <form data-quote-form="contact">
-      <div class="form-row">
-        <div class="form-group">
-          <label>Name<span class="req">*</span></label>
-          <input type="text" placeholder="First" required>
-        </div>
-        <div class="form-group">
-          <label>&nbsp;</label>
-          <input type="text" placeholder="Last">
-        </div>
+  <div class="container" style="max-width:720px;">
+
+    <div id="cart-page-empty" style="display:none; text-align:center; padding:40px 0 60px;">
+      <p class="section-copy center" style="margin-bottom:24px;">Your quote list is empty. Browse Services or Products and tap "Add to Quote" on anything you're interested in.</p>
+      <div style="display:flex; gap:16px; justify-content:center; flex-wrap:wrap;">
+        <a href="services.html" class="btn btn-green">Browse Services</a>
+        <a href="products.html" class="btn btn-outline-square">Browse Products</a>
       </div>
-      <div class="form-group">
-        <label>Email<span class="req">*</span></label>
-        <input type="email" required>
+    </div>
+
+    <div id="cart-page-items" style="display:flex; flex-direction:column; gap:16px; margin-bottom:20px;"></div>
+
+    <div id="cart-page-form-wrap" style="display:none;">
+      <hr class="form-divider">
+      <div class="form-card">
+        <h2 style="margin-bottom:8px;">Submit For A Free Quote</h2>
+        <p class="section-copy" style="margin-bottom:26px;">Tell us how to reach you and we'll follow up with pricing on everything in your list above.</p>
+        <div class="form-success" id="form-success">Thanks! Your quote request has been received — we'll be in touch soon.</div>
+        <form data-quote-form="cart">
+          <div class="form-row">
+            <div class="form-group">
+              <label>First Name<span class="req">*</span></label>
+              <input type="text" required>
+            </div>
+            <div class="form-group">
+              <label>Last Name<span class="req">*</span></label>
+              <input type="text" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Email<span class="req">*</span></label>
+              <input type="email" required>
+            </div>
+            <div class="form-group">
+              <label>Phone Number<span class="req">*</span></label>
+              <input type="tel" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Anything else we should know?</label>
+            <textarea></textarea>
+          </div>
+          <button type="submit" class="btn btn-green btn-block">Submit Quote Request</button>
+          <p class="form-note">This form isn't wired to email delivery yet — connect it to a form backend before going live.</p>
+        </form>
       </div>
-      <div class="form-group">
-        <label>Phone Number<span class="req">*</span></label>
-        <input type="tel" required>
-      </div>
-      <div class="form-group">
-        <label>Address</label>
-        <input type="text">
-      </div>
-      <div class="form-group">
-        <label>How did you find us? (check all that apply)</label>
-        <div class="check-group">
-          <label class="check-item"><input type="checkbox"> Instagram</label>
-          <label class="check-item"><input type="checkbox"> Neighbor</label>
-          <label class="check-item"><input type="checkbox"> Friend / Family</label>
-        </div>
-      </div>
-      <div class="form-group">
-        <label>Check the desired amenities. (check all that apply)</label>
-        <div class="check-group">
-          <label class="check-item"><input type="checkbox"> Artificial Turf</label>
-          <label class="check-item"><input type="checkbox"> Concrete / Pavers</label>
-          <label class="check-item"><input type="checkbox"> BBQ Islands</label>
-          <label class="check-item"><input type="checkbox"> Fire Pit</label>
-          <label class="check-item"><input type="checkbox"> Water Features</label>
-          <label class="check-item"><input type="checkbox"> Pool / Spa</label>
-          <label class="check-item"><input type="checkbox"> Media Wall</label>
-          <label class="check-item"><input type="checkbox"> Shade Structure</label>
-          <label class="check-item"><input type="checkbox"> Clean-ups</label>
-          <label class="check-item"><input type="checkbox"> Irrigation Installations</label>
-          <label class="check-item"><input type="checkbox"> 3D-Design</label>
-        </div>
-      </div>
-      <div class="form-group">
-        <label>Is there anything you would like to add?</label>
-        <textarea></textarea>
-      </div>
-      <button type="submit" class="btn btn-green btn-block">Submit</button>
-      <p class="form-note">This form isn't wired to email delivery yet — connect it to a form backend before going live.</p>
-    </form>
+    </div>
+
   </div>
 </section>
 
@@ -171,8 +146,8 @@
       <a href="products.html">Products</a>
       <a href="about.html">About Us</a>
       <a href="portfolio.html">Portfolio</a>
-      <a href="contact.html" class="active">Contact Us</a>
-      <a href="cart.html">Shopping Cart</a>
+      <a href="contact.html">Contact Us</a>
+      <a href="cart.html" class="active">Shopping Cart</a>
     </nav>
     <img src="images/logo/ixv-logo.png" class="footer-logo" alt="IXV Landscape Design">
     <p class="footer-copy">Copyright © 2026 IXV Landscape Design</p>

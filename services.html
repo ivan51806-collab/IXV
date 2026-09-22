@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Services | IXV Landscape Design</title>
-<meta name="description" content="Landscape design, planting, hardscaping, irrigation, outdoor lighting, and seasonal maintenance — full-service landscaping from IXV Landscape Design.">
+<title>Landscaping Design Services | IXV Landscape Design</title>
+<meta name="description" content="Full-service landscaping — artificial turf, BBQ islands, irrigation, hardscape, concrete, water features, and more from IXV Landscape Design.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -15,222 +15,152 @@
 <header class="site-header">
   <nav class="nav">
     <a href="index.html" class="logo">
-      <svg class="logo-mark" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="24" cy="24" r="24" fill="#2f5a29"/>
-        <path d="M24 34c6-2 10-8 10-16 0-2-.3-4-1-6-6 1-10 4-12 8-1-3-3-5-6-6-1 2-1 4-1 6 0 8 4 14 10 16z" fill="#eef2e9"/>
-        <path d="M24 34V18" stroke="#2f5a29" stroke-width="1.5" stroke-linecap="round"/>
-      </svg>
-      <span>IXV<span class="logo-sub">Landscape Design</span></span>
+      <img src="images/logo/ixv-logo.png" alt="IXV Landscape Design">
+      IXV Landscape Design
     </a>
     <ul class="nav-links">
       <li><a href="index.html">Home</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="services.html" class="active">Services</a></li>
-      <li><a href="gallery.html">Gallery</a></li>
-      <li><a href="contact.html">Contact</a></li>
+      <li class="active">
+        <button class="nav-link" type="button">Services
+          <svg class="caret" viewBox="0 0 12 8" fill="none"><path d="M1 1l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </button>
+        <div class="dropdown">
+          <a href="services/artificial-turf.html">Artificial Turf Installation</a>
+          <a href="services/bbq-island.html">BBQ Island Design &amp; Installation</a>
+          <a href="services/irrigation.html">Irrigation</a>
+          <a href="services/hardscape.html">Luxury Hardscape Design</a>
+          <a href="services/concrete.html">Concrete Services</a>
+          <a href="services/water-features.html">Custom Water Features</a>
+          <a href="services/landscape-design.html">Custom Landscape Design</a>
+          <a href="services/residential-cleanup.html">Residential Cleanup</a>
+          <a href="services/property-maintenance.html">Property Maintenance</a>
+        </div>
+      </li>
+      <li>
+        <button class="nav-link" type="button">Products
+          <svg class="caret" viewBox="0 0 12 8" fill="none"><path d="M1 1l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </button>
+        <div class="dropdown">
+          <a href="products/islands.html">Islands</a>
+          <a href="products/grills.html">Grills</a>
+          <a href="products/fire-pits.html">Fire Pits</a>
+          <a href="products/pans-burners.html">Pans &amp; Burners</a>
+          <a href="products/water-features.html">Water Features</a>
+        </div>
+      </li>
+      <li><a href="about.html">About Us</a></li>
+      <li><a href="portfolio.html">Portfolio</a></li>
+      <li><a href="contact.html">Contact Us</a></li>
+      <li><a href="cart.html">Shopping Cart</a></li>
     </ul>
-    <div class="nav-cta">
-      <a href="contact.html" class="btn btn-dark-outline">Get a Free Quote</a>
+    <div class="nav-right">
+      <button class="cart-btn" data-cart-open aria-label="Open quote cart" type="button">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg>
+        <span class="cart-count hidden">0</span>
+      </button>
     </div>
-    <button class="nav-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+    <button class="nav-toggle" aria-label="Toggle menu" type="button">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
   </nav>
 </header>
 
-<section class="page-hero">
-  <div class="container">
-    <span class="section-label">Our Services</span>
-    <h1>Everything your landscape needs, in-house</h1>
-    <p>Design, installation, and maintenance — one team, start to finish.</p>
-    <div class="breadcrumb"><a href="index.html">Home</a> / Services</div>
+<div class="cart-overlay" id="cart-overlay">
+  <div class="cart-drawer">
+    <div class="cart-drawer-header">
+      <h3>Your Quote List</h3>
+      <button data-cart-close aria-label="Close" type="button">&times;</button>
+    </div>
+    <div class="cart-drawer-items" id="cart-drawer-items"></div>
+    <div class="cart-drawer-footer">
+      <p>Review your list and submit for a free quote — no payment, no obligation.</p>
+      <a href="cart.html" class="btn btn-green btn-block">View Full Quote List</a>
+    </div>
+  </div>
+</div>
+
+<section class="page-hero" style="min-height:300px;">
+  <div class="page-hero-content container">
+    <h1>Landscaping Design Services</h1>
   </div>
 </section>
 
-<section>
-  <div class="container services-detail">
-
-    <div class="service-detail-row">
-      <div class="service-detail-visual tile tile-1">
-        <svg viewBox="0 0 100 100" fill="none" width="40%" height="40%"><path d="M20 80h60M30 80V50l20-15 20 15v30" stroke="#faf8f2" stroke-width="3" fill="none"/></svg>
-      </div>
-      <div class="service-detail-content">
-        <span class="section-label">01 · Design</span>
-        <h2 class="section-heading">Landscape Design</h2>
-        <p style="color:var(--gray-600);">A custom master plan that ties your plantings, hardscape, and home together — built around your budget and how you actually use the space.</p>
-        <ul>
-          <li>Site analysis &amp; concept sketches</li>
-          <li>3D renderings for major projects</li>
-          <li>Phased plans for multi-year budgets</li>
-          <li>Fixed, written estimate before install</li>
-        </ul>
-        <a href="contact.html" class="btn btn-dark-outline">Request This Service</a>
-      </div>
-    </div>
-
-    <div class="service-detail-row reverse">
-      <div class="service-detail-visual tile tile-4">
-        <svg viewBox="0 0 100 100" fill="none" width="40%" height="40%"><path d="M50 85c15-5 25-20 25-40 0-5-.7-10-2.5-15-15 2.5-25 10-30 20-2.5-7.5-7.5-12.5-15-15-2.5 5-2.5 10-2.5 15 0 20 10 35 25 40z" stroke="#1b2e1a" stroke-width="2.5" fill="none"/></svg>
-      </div>
-      <div class="service-detail-content">
-        <span class="section-label">02 · Planting</span>
-        <h2 class="section-heading">Planting &amp; Gardens</h2>
-        <p style="color:var(--gray-600);">Perennial beds, native plantings, and seasonal color chosen specifically for your soil, sun exposure, and climate zone.</p>
-        <ul>
-          <li>Native &amp; pollinator-friendly plant palettes</li>
-          <li>Perennial beds &amp; seasonal color rotation</li>
-          <li>Tree &amp; shrub selection and planting</li>
-          <li>Soil testing and amendment</li>
-        </ul>
-        <a href="contact.html" class="btn btn-dark-outline">Request This Service</a>
-      </div>
-    </div>
-
-    <div class="service-detail-row">
-      <div class="service-detail-visual tile tile-2">
-        <svg viewBox="0 0 100 100" fill="none" width="40%" height="40%"><rect x="20" y="45" width="60" height="35" stroke="#faf8f2" stroke-width="3" fill="none"/><path d="M30 45V30a2 2 0 012-2h36a2 2 0 012 2v15" stroke="#faf8f2" stroke-width="3" fill="none"/></svg>
-      </div>
-      <div class="service-detail-content">
-        <span class="section-label">03 · Hardscape</span>
-        <h2 class="section-heading">Hardscaping</h2>
-        <p style="color:var(--gray-600);">Patios, retaining walls, walkways, and outdoor kitchens engineered to hold up through freeze-thaw cycles for decades.</p>
-        <ul>
-          <li>Paver &amp; natural stone patios</li>
-          <li>Retaining &amp; seat walls</li>
-          <li>Walkways, steps &amp; driveways</li>
-          <li>Outdoor kitchens &amp; fire features</li>
-        </ul>
-        <a href="contact.html" class="btn btn-dark-outline">Request This Service</a>
-      </div>
-    </div>
-
-    <div class="service-detail-row reverse">
-      <div class="service-detail-visual tile tile-6">
-        <svg viewBox="0 0 100 100" fill="none" width="40%" height="40%"><path d="M50 15v15M50 70v15M15 50h15M70 50h15M25 25l11 11M64 64l11 11M75 25L64 36M36 64L25 75" stroke="#faf8f2" stroke-width="3" stroke-linecap="round"/><circle cx="50" cy="50" r="14" stroke="#faf8f2" stroke-width="3" fill="none"/></svg>
-      </div>
-      <div class="service-detail-content">
-        <span class="section-label">04 · Irrigation</span>
-        <h2 class="section-heading">Irrigation &amp; Drainage</h2>
-        <p style="color:var(--gray-600);">Smart irrigation systems and drainage solutions that keep your landscape healthy while keeping your water bill in check.</p>
-        <ul>
-          <li>Smart, zoned sprinkler systems</li>
-          <li>Drip irrigation for beds &amp; gardens</li>
-          <li>French drains &amp; regrading</li>
-          <li>Rain sensor &amp; app-based scheduling</li>
-        </ul>
-        <a href="contact.html" class="btn btn-dark-outline">Request This Service</a>
-      </div>
-    </div>
-
-    <div class="service-detail-row">
-      <div class="service-detail-visual tile tile-5">
-        <svg viewBox="0 0 100 100" fill="none" width="40%" height="40%"><path d="M35 75h30M40 85h20M50 15a15 15 0 00-10 26c1.5 1.5 2.5 3.5 2.5 6h15c0-2.5 1-4.5 2.5-6A15 15 0 0050 15z" stroke="#faf8f2" stroke-width="3" fill="none"/></svg>
-      </div>
-      <div class="service-detail-content">
-        <span class="section-label">05 · Lighting</span>
-        <h2 class="section-heading">Outdoor Lighting</h2>
-        <p style="color:var(--gray-600);">Low-voltage lighting design that extends your evenings outdoors and highlights the landscape after dark.</p>
-        <ul>
-          <li>Path &amp; step lighting</li>
-          <li>Uplighting for trees &amp; architecture</li>
-          <li>Patio &amp; entertaining area lighting</li>
-          <li>Smart controls &amp; timers</li>
-        </ul>
-        <a href="contact.html" class="btn btn-dark-outline">Request This Service</a>
-      </div>
-    </div>
-
-    <div class="service-detail-row reverse">
-      <div class="service-detail-visual tile tile-3">
-        <svg viewBox="0 0 100 100" fill="none" width="40%" height="40%"><path d="M50 20v50M35 30l15-10 15 10M20 75h60" stroke="#faf8f2" stroke-width="3" stroke-linecap="round"/></svg>
-      </div>
-      <div class="service-detail-content">
-        <span class="section-label">06 · Maintenance</span>
-        <h2 class="section-heading">Seasonal Maintenance</h2>
-        <p style="color:var(--gray-600);">Mowing, pruning, mulching, and cleanups on a recurring schedule — so your landscape looks its best all year.</p>
-        <ul>
-          <li>Weekly &amp; biweekly mowing plans</li>
-          <li>Spring &amp; fall cleanups</li>
-          <li>Pruning, edging &amp; mulching</li>
-          <li>Fertilization &amp; weed control</li>
-        </ul>
-        <a href="contact.html" class="btn btn-dark-outline">Request This Service</a>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<section style="background:var(--sage-100);">
+<section style="padding-top:0;">
   <div class="container">
-    <span class="section-label">Common Questions</span>
-    <h2 class="section-heading text-center" style="text-align:center; margin-left:auto; margin-right:auto;">Frequently asked questions</h2>
-    <div class="faq-list">
-      <div class="faq-item open">
-        <button class="faq-question">How much does a landscape project typically cost? <span class="plus">+</span></button>
-        <div class="faq-answer"><p>It depends heavily on scope — a planting refresh might run a few thousand dollars, while a full patio-and-hardscape project can run into the tens of thousands. We always provide a fixed, written estimate after the initial site visit, before any work begins.</p></div>
+    <div class="placeholder-tile" style="aspect-ratio:16/9; margin-bottom:50px;">Backyard Project Photo</div>
+    <h2 class="section-heading center" style="max-width:640px;">Landscaping Design Experts</h2>
+    <div class="section-copy center" style="max-width:640px; margin-bottom:40px;">
+      <p>At IXV Landscape Design we believe that your dream backyard starts with a good design!</p>
+      <p>By providing a wide range of design services, IXV has the capability to both design and execute your landscape development project.</p>
+      <p>You're gonna have a hard time finding a landscaping design company that is more passionate, dedicated and focused on completing your dream backyard!</p>
+    </div>
+    <div style="text-align:center; margin-bottom:60px;">
+      <a href="contact.html" class="btn btn-green">Get A Quote Now</a>
+    </div>
+
+    <div class="card-grid">
+      <div class="item-card">
+        <div class="thumb"><div class="placeholder-tile">Artificial Turf Photo</div></div>
+        <h3>Artificial Turf Installation</h3>
+        <div class="card-actions"><a href="services/artificial-turf.html" class="btn btn-green">Learn More</a></div>
       </div>
-      <div class="faq-item">
-        <button class="faq-question">Do you handle both design and installation? <span class="plus">+</span></button>
-        <div class="faq-answer"><p>Yes — everything is done in-house by our own crew, from the first concept sketch through final installation and cleanup. We don't subcontract to outside crews.</p></div>
+      <div class="item-card">
+        <div class="thumb"><div class="placeholder-tile">BBQ Island Photo</div></div>
+        <h3>BBQ Island Design and Installation</h3>
+        <div class="card-actions"><a href="services/bbq-island.html" class="btn btn-green">Learn More</a></div>
       </div>
-      <div class="faq-item">
-        <button class="faq-question">What areas do you serve? <span class="plus">+</span></button>
-        <div class="faq-answer"><p>We serve Cedar Falls and the surrounding region within about a 30-mile radius. Reach out through the contact page and we can confirm whether your property is in our service area.</p></div>
+      <div class="item-card">
+        <div class="thumb"><div class="placeholder-tile">Irrigation Photo</div></div>
+        <h3>Irrigation</h3>
+        <div class="card-actions"><a href="services/irrigation.html" class="btn btn-green">Learn More</a></div>
       </div>
-      <div class="faq-item">
-        <button class="faq-question">Do you offer ongoing maintenance plans? <span class="plus">+</span></button>
-        <div class="faq-answer"><p>Yes — weekly, biweekly, and seasonal maintenance plans are available for both new installs and existing landscapes we didn't originally build.</p></div>
+      <div class="item-card">
+        <div class="thumb"><div class="placeholder-tile">Luxury Hardscape Photo</div></div>
+        <h3>Luxury Hardscape Design</h3>
+        <div class="card-actions"><a href="services/hardscape.html" class="btn btn-green">Learn More</a></div>
+      </div>
+      <div class="item-card">
+        <div class="thumb"><div class="placeholder-tile">Concrete Services Photo</div></div>
+        <h3>Concrete Services</h3>
+        <div class="card-actions"><a href="services/concrete.html" class="btn btn-green">Learn More</a></div>
+      </div>
+      <div class="item-card">
+        <div class="thumb"><div class="placeholder-tile">Water Features Photo</div></div>
+        <h3>Custom Water Features</h3>
+        <div class="card-actions"><a href="services/water-features.html" class="btn btn-green">Learn More</a></div>
+      </div>
+      <div class="item-card">
+        <div class="thumb"><div class="placeholder-tile">Landscape Design Photo</div></div>
+        <h3>Custom Landscaping Design</h3>
+        <div class="card-actions"><a href="services/landscape-design.html" class="btn btn-green">Learn More</a></div>
+      </div>
+      <div class="item-card">
+        <div class="thumb"><div class="placeholder-tile">Residential Cleanup Photo</div></div>
+        <h3>Residential Cleanup</h3>
+        <div class="card-actions"><a href="services/residential-cleanup.html" class="btn btn-green">Learn More</a></div>
+      </div>
+      <div class="item-card">
+        <div class="thumb"><div class="placeholder-tile">Property Maintenance Photo</div></div>
+        <h3>Property Maintenance</h3>
+        <div class="card-actions"><a href="services/property-maintenance.html" class="btn btn-green">Learn More</a></div>
       </div>
     </div>
   </div>
 </section>
 
 <footer class="site-footer">
-  <div class="container">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <a href="index.html" class="logo">
-          <svg class="logo-mark" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="24" cy="24" r="24" fill="#3f7a35"/>
-            <path d="M24 34c6-2 10-8 10-16 0-2-.3-4-1-6-6 1-10 4-12 8-1-3-3-5-6-6-1 2-1 4-1 6 0 8 4 14 10 16z" fill="#faf8f2"/>
-          </svg>
-          <span>IXV<span class="logo-sub" style="color:var(--sage-200);">Landscape Design</span></span>
-        </a>
-        <p>Designing and maintaining outdoor spaces you'll actually want to spend time in.</p>
-        <div class="footer-social">
-          <a href="#" aria-label="Instagram">📷</a>
-          <a href="#" aria-label="Facebook">📘</a>
-          <a href="#" aria-label="Houzz">🏠</a>
-        </div>
-      </div>
-      <div class="footer-col">
-        <h4>Company</h4>
-        <ul>
-          <li><a href="about.html">About Us</a></li>
-          <li><a href="gallery.html">Our Work</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Services</h4>
-        <ul>
-          <li><a href="services.html">Landscape Design</a></li>
-          <li><a href="services.html">Hardscaping</a></li>
-          <li><a href="services.html">Maintenance</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Contact</h4>
-        <ul>
-          <li>123 Meadowbrook Lane<br>Cedar Falls, State 50613</li>
-          <li><a href="tel:+15555551234">(555) 555-1234</a></li>
-          <li><a href="mailto:hello@ixvlandscape.com">hello@ixvlandscape.com</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <span>© 2026 IXV Landscape Design. All rights reserved.</span>
-      <span>Licensed &amp; Insured — License #LS-04471</span>
-    </div>
+  <div class="container footer-content">
+    <nav class="footer-nav">
+      <a href="index.html">Home</a>
+      <a href="services.html" class="active">Services</a>
+      <a href="products.html">Products</a>
+      <a href="about.html">About Us</a>
+      <a href="portfolio.html">Portfolio</a>
+      <a href="contact.html">Contact Us</a>
+      <a href="cart.html">Shopping Cart</a>
+    </nav>
+    <img src="images/logo/ixv-logo.png" class="footer-logo" alt="IXV Landscape Design">
+    <p class="footer-copy">Copyright © 2026 IXV Landscape Design</p>
   </div>
 </footer>
 
