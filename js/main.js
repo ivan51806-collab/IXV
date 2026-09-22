@@ -124,7 +124,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Dropdown toggles (click-based, works for touch + desktop)
   document.querySelectorAll('.nav-links > li').forEach((li) => {
-    const trigger = li.querySelector('button.nav-link');
+    const trigger = li.querySelector('.dropdown-toggle');
     if (!trigger) return;
     trigger.addEventListener('click', (e) => {
       e.stopPropagation();
