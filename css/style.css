@@ -228,8 +228,8 @@ section { padding: 84px 0; }
 .page-hero-content h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); }
 
 /* ===== Trust / feature icons ===== */
-.feature-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; background: var(--charcoal); }
-.feature-item { display: flex; align-items: center; gap: 16px; }
+.feature-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; background: var(--charcoal); justify-items: center; }
+.feature-item { display: flex; align-items: center; gap: 16px; text-align: left; }
 .feature-icon {
   flex-shrink: 0; width: 52px; height: 52px; border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
@@ -258,6 +258,19 @@ section { padding: 84px 0; }
 .item-card .eyebrow { font-size: 0.78rem; color: var(--green-light); font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 6px; }
 .item-card h3 { font-size: 1.2rem; margin-bottom: 16px; }
 .item-card .card-actions { display: flex; flex-direction: column; gap: 10px; margin-top: auto; }
+
+/* ===== Link card (home page product/service tiles — whole box is the link) ===== */
+.link-card { display: block; text-decoration: none; transition: transform var(--transition); }
+.link-card:hover { transform: translateY(-4px); }
+.link-card .thumb { border-radius: var(--radius); overflow: hidden; aspect-ratio: 4/3; margin-bottom: 16px; background: var(--charcoal-2); }
+.link-card .thumb img, .link-card .thumb .placeholder-tile { width: 100%; height: 100%; object-fit: cover; }
+.link-card h3 { font-size: 1.05rem; text-align: center; }
+
+/* ===== Section banner (title over a short photo strip, e.g. "Products") ===== */
+.section-banner { position: relative; min-height: 200px; display: flex; align-items: center; justify-content: center; overflow: hidden; border-radius: var(--radius); margin-bottom: 50px; }
+.section-banner img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; }
+.section-banner::after { content: ''; position: absolute; inset: 0; background: rgba(0,0,0,0.45); z-index: 0; }
+.section-banner h2 { position: relative; z-index: 1; margin-bottom: 0; }
 
 /* ===== Placeholder tile (no real photo yet) ===== */
 .placeholder-tile {
