@@ -466,6 +466,8 @@ section { padding: 84px 0; }
   .feature-grid { display: none; }
   .feature-coverflow { display: block; }
   .split { grid-template-columns: 1fr; }
+  .home-split-center-mobile { text-align: center; }
+  .home-split-center-mobile .section-copy { margin-left: auto; margin-right: auto; }
   .card-grid, .card-grid.cols-3 { grid-template-columns: repeat(2, 1fr); }
   .product-detail { grid-template-columns: 1fr; }
   .detail-photos { grid-template-columns: 1fr; }
