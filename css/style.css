@@ -285,6 +285,7 @@ section { padding: 84px 0; }
 .item-card h3 { font-size: 1.2rem; margin-bottom: 16px; }
 .item-card .card-actions { display: flex; flex-direction: column; gap: 10px; margin-top: auto; }
 
+.sleek-grid .item-card { text-align: center; }
 .sleek-grid .item-card h3 {
   font-size: 0.95rem;
   font-weight: 500;
