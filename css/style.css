@@ -285,6 +285,17 @@ section { padding: 84px 0; }
 .item-card h3 { font-size: 1.2rem; margin-bottom: 16px; }
 .item-card .card-actions { display: flex; flex-direction: column; gap: 10px; margin-top: auto; }
 
+.sleek-grid .item-card h3 {
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--gray-300);
+}
+@media (max-width: 600px) {
+  .sleek-grid.card-grid, .sleek-grid.card-grid.cols-3 { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+}
+
 /* ===== Link card (home page product/service tiles — whole box is the link) ===== */
 .link-card { display: block; text-decoration: none; transition: transform var(--transition); }
 .link-card:hover { transform: translateY(-4px); }
