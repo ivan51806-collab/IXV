@@ -147,8 +147,8 @@ function initPortfolioCoverflow() {
   window.addEventListener('resize', measure);
 
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const BASE_SPEED = reduceMotion ? 0 : 0.5; // px/frame — baseline autoplay drifts right to left
-  const MAX_HOVER_SPEED = 7; // px/frame at the far left/right edge of the carousel
+  const BASE_SPEED = reduceMotion ? 0 : 0.32; // px/frame — baseline autoplay drifts right to left
+  const MAX_HOVER_SPEED = 5; // px/frame at the far left/right edge of the carousel
   const MAX_SCALE = 1.18;
   const MIN_SCALE = 0.72;
   const MIN_OPACITY = 0.45;
