@@ -190,6 +190,10 @@ section { padding: 84px 0; }
 
 /* ===== Mobile nav ===== */
 @media (max-width: 900px) {
+  .nav { padding: 14px 16px; gap: 10px; }
+  .logo { font-size: 0.85rem; gap: 6px; white-space: nowrap; }
+  .logo img { height: 30px; flex-shrink: 0; }
+  .nav-right { gap: 10px; }
   .nav-links {
     display: none;
     position: absolute; top: 100%; left: 0; right: 0;
