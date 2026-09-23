@@ -156,15 +156,19 @@ function initPortfolioCoverflow() {
   let t = 0;
   let speed = BASE_SPEED;
   let targetSpeed = BASE_SPEED;
+  let lastDirection = 1; // 1 = drifting left, -1 = drifting right — kept after the mouse leaves
 
   root.addEventListener('mousemove', (e) => {
     const rect = root.getBoundingClientRect();
     const ratio = Math.max(-1, Math.min(1, (e.clientX - rect.left - containerWidth / 2) / (containerWidth / 2)));
     // Left side of the carousel accelerates the existing left-drift; right side reverses it.
     targetSpeed = -ratio * MAX_HOVER_SPEED;
+    if (ratio !== 0) lastDirection = ratio < 0 ? 1 : -1;
   });
   root.addEventListener('mouseleave', () => {
-    targetSpeed = BASE_SPEED;
+    // Keep coasting in whichever direction the mouse last steered it, instead of
+    // snapping back to the original right-to-left default.
+    targetSpeed = BASE_SPEED * lastDirection;
   });
 
   function frame() {
