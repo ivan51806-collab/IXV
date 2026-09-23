@@ -431,6 +431,7 @@ section { padding: 84px 0; }
 }
 @media (max-width: 600px) {
   .card-grid, .card-grid.cols-3 { grid-template-columns: 1fr; }
+  .card-grid.cols-3.home-link-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
   .cta-banner { padding: 40px 24px; }
   .form-card { padding: 26px; }
 }
