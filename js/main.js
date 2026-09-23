@@ -101,6 +101,96 @@ function renderCartPage() {
   });
 }
 
+function initPortfolioCoverflow() {
+  const root = document.getElementById('portfolio-coverflow');
+  const track = document.getElementById('coverflow-track');
+  if (!root || !track) return;
+
+  const PORTFOLIO_PHOTOS = [
+    'images/portfolio/portfolio1.jpg',
+    'images/portfolio/portfolio2.jpg',
+    'images/portfolio/portfolio3.jpg',
+    'images/portfolio/portfolio4.jpg',
+    'images/portfolio/portfolio5.jpg',
+    'images/portfolio/portfolio6.jpg',
+    'images/portfolio/portfolio7.jpg',
+    'images/portfolio/portfolio8.jpg',
+  ];
+  const n = PORTFOLIO_PHOTOS.length;
+
+  // Render 3 copies back-to-back so the track can loop seamlessly.
+  const slides = [];
+  for (let copy = 0; copy < 3; copy++) {
+    PORTFOLIO_PHOTOS.forEach((src, i) => {
+      const slide = document.createElement('div');
+      slide.className = 'coverflow-slide';
+      const img = document.createElement('img');
+      img.src = src;
+      img.alt = `IXV Landscape Design project ${i + 1}`;
+      img.loading = copy === 1 ? 'eager' : 'lazy';
+      slide.appendChild(img);
+      track.appendChild(slide);
+      slides.push(slide);
+    });
+  }
+
+  let containerWidth = 0;
+  let step = 0;
+  let centerOffset = 0;
+
+  function measure() {
+    containerWidth = root.clientWidth;
+    step = slides[1].offsetLeft - slides[0].offsetLeft;
+    centerOffset = containerWidth / 2 - n * step - step / 2;
+  }
+  measure();
+  window.addEventListener('resize', measure);
+
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const BASE_SPEED = reduceMotion ? 0 : 0.5; // px/frame — baseline autoplay drifts right to left
+  const MAX_HOVER_SPEED = 7; // px/frame at the far left/right edge of the carousel
+  const MAX_SCALE = 1.18;
+  const MIN_SCALE = 0.72;
+  const MIN_OPACITY = 0.45;
+
+  let t = 0;
+  let speed = BASE_SPEED;
+  let targetSpeed = BASE_SPEED;
+
+  root.addEventListener('mousemove', (e) => {
+    const rect = root.getBoundingClientRect();
+    const ratio = Math.max(-1, Math.min(1, (e.clientX - rect.left - containerWidth / 2) / (containerWidth / 2)));
+    // Left side of the carousel accelerates the existing left-drift; right side reverses it.
+    targetSpeed = -ratio * MAX_HOVER_SPEED;
+  });
+  root.addEventListener('mouseleave', () => {
+    targetSpeed = BASE_SPEED;
+  });
+
+  function frame() {
+    speed += (targetSpeed - speed) * 0.06;
+    t += speed;
+    const totalWidth = step * n;
+    const wrapped = ((t % totalWidth) + totalWidth) % totalWidth;
+    const trackX = centerOffset - wrapped;
+    track.style.transform = `translateX(${trackX}px)`;
+
+    const falloff = step * 1.6;
+    const fadeDist = step * 2.2;
+    slides.forEach((el, i) => {
+      const center = trackX + i * step + step / 2;
+      const d = Math.abs(center - containerWidth / 2);
+      const scale = Math.max(MIN_SCALE, MAX_SCALE - (d / falloff) * (MAX_SCALE - MIN_SCALE));
+      const opacity = Math.max(MIN_OPACITY, 1 - d / fadeDist);
+      el.style.transform = `scale(${scale.toFixed(3)})`;
+      el.style.opacity = opacity.toFixed(2);
+      el.style.zIndex = Math.round(scale * 100);
+    });
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+}
+
 function openCart() {
   const overlay = document.getElementById('cart-overlay');
   if (overlay) overlay.classList.add('open');
@@ -114,6 +204,7 @@ document.addEventListener('DOMContentLoaded', () => {
   renderCartBadge();
   renderCartDrawer();
   renderCartPage();
+  initPortfolioCoverflow();
 
   // Mobile nav toggle
   const navToggle = document.querySelector('.nav-toggle');
