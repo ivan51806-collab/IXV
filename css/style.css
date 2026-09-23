@@ -99,7 +99,7 @@ section { padding: 84px 0; }
   margin: 0 auto;
 }
 
-.logo { display: flex; align-items: center; gap: 12px; font-weight: 700; font-size: 1.25rem; }
+.logo { display: flex; align-items: center; gap: 12px; font-weight: 600; font-size: 1.25rem; }
 .logo img { height: 42px; width: auto; }
 
 .nav-links { display: flex; align-items: center; gap: 30px; }
@@ -218,13 +218,17 @@ section { padding: 84px 0; }
 }
 
 /* ===== Hero (video/photo) ===== */
-.hero { position: relative; min-height: 640px; display: flex; align-items: center; overflow: hidden; }
+.hero { position: relative; min-height: 92vh; display: flex; align-items: center; overflow: hidden; }
+@media (max-width: 700px) {
+  .hero { min-height: 70vh; }
+}
 .hero-media { position: absolute; inset: 0; z-index: 0; }
 .hero-media video, .hero-media img { width: 100%; height: 100%; object-fit: cover; }
 .hero-media::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,0.55), rgba(0,0,0,0.75)); }
 .hero-content { position: relative; z-index: 1; text-align: center; width: 100%; padding: 60px 24px; }
 .hero-content h1 { font-size: clamp(2.2rem, 5vw, 3.4rem); margin-bottom: 18px; }
 .hero-content .tagline { font-weight: 600; letter-spacing: 0.04em; color: var(--gray-300); margin-bottom: 34px; font-size: 1.05rem; }
+.hero-content .btn-green:hover { background: var(--gray-300); color: var(--black); }
 
 .hero-placeholder-note {
   position: absolute; bottom: 14px; left: 50%; transform: translateX(-50%);
