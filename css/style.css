@@ -290,7 +290,16 @@ section { padding: 84px 0; }
 .link-card:hover { transform: translateY(-4px); }
 .link-card .thumb { border-radius: var(--radius); overflow: hidden; aspect-ratio: 4/3; margin-bottom: 16px; background: var(--charcoal-2); }
 .link-card .thumb img, .link-card .thumb .placeholder-tile { width: 100%; height: 100%; object-fit: cover; }
-.link-card h3 { font-size: 1.05rem; text-align: center; }
+.link-card h3 {
+  font-size: 0.88rem;
+  font-weight: 500;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--gray-300);
+  transition: color var(--transition);
+}
+.link-card:hover h3 { color: var(--white); }
 
 /* ===== Section banner (title over a short photo strip, e.g. "Products") ===== */
 .section-banner { position: relative; min-height: 200px; display: flex; align-items: center; justify-content: center; overflow: hidden; border-radius: var(--radius); margin-bottom: 50px; }
