@@ -358,11 +358,30 @@ section { padding: 84px 0; }
 .cta-banner p { color: var(--gray-300); margin: 14px 0 30px; }
 
 /* ===== Service / Product detail page ===== */
+.service-detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
 .detail-body { max-width: 760px; }
 .detail-body p + p { margin-top: 20px; color: var(--gray-300); }
 .detail-photos { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-top: 50px; }
+.service-detail-grid .detail-photos { margin-top: 0; }
 .detail-photos.single { grid-template-columns: 1fr; }
 .detail-photos img, .detail-photos .placeholder-tile { width: 100%; aspect-ratio: 16/10; object-fit: cover; border-radius: var(--radius); }
+.detail-photos img { cursor: zoom-in; transition: opacity 0.2s ease; }
+.detail-photos img:hover { opacity: 0.85; }
+
+.lightbox-overlay {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.92);
+  display: none; align-items: center; justify-content: center;
+  z-index: 999; padding: 60px 24px;
+}
+.lightbox-overlay.open { display: flex; }
+.lightbox-overlay img { max-width: 100%; max-height: 100%; border-radius: var(--radius); }
+.lightbox-close {
+  position: absolute; top: 20px; right: 24px; width: 42px; height: 42px;
+  background: rgba(255,255,255,0.12); border: none; border-radius: 50%;
+  color: #fff; font-size: 1.6rem; line-height: 1; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+}
+.lightbox-close:hover { background: rgba(255,255,255,0.22); }
 
 /* Product detail page */
 .product-detail { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
@@ -475,6 +494,8 @@ section { padding: 84px 0; }
   .btn-row-compact .btn { padding: 10px 14px; font-size: 0.68rem; letter-spacing: 0.03em; white-space: nowrap; }
   .card-grid, .card-grid.cols-3 { grid-template-columns: repeat(2, 1fr); }
   .product-detail { grid-template-columns: 1fr; }
+  .service-detail-grid { grid-template-columns: 1fr; gap: 30px; }
+  .service-detail-grid .detail-photos { margin-top: 30px; }
   .detail-photos { grid-template-columns: 1fr; }
   .form-row { grid-template-columns: 1fr; }
 }

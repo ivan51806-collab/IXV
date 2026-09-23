@@ -213,6 +213,33 @@ function initFeatureCoverflow() {
   runCoverflow(root, track, { baseSpeed: 0.28, maxHoverSpeed: 4, maxScale: 1.08, minScale: 0.85, minOpacity: 0.55 });
 }
 
+function initDetailPhotoLightbox() {
+  const photos = document.querySelectorAll('.detail-photos img');
+  if (!photos.length) return;
+
+  const overlay = document.createElement('div');
+  overlay.className = 'lightbox-overlay';
+  overlay.innerHTML = '<button class="lightbox-close" type="button" aria-label="Close">&times;</button><img src="" alt="">';
+  document.body.appendChild(overlay);
+  const overlayImg = overlay.querySelector('img');
+
+  function openLightbox(img) {
+    overlayImg.src = img.src;
+    overlayImg.alt = img.alt;
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLightbox() {
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  photos.forEach((img) => img.addEventListener('click', () => openLightbox(img)));
+  overlay.querySelector('.lightbox-close').addEventListener('click', closeLightbox);
+  overlay.addEventListener('click', (e) => { if (e.target === overlay) closeLightbox(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLightbox(); });
+}
+
 function openCart() {
   const overlay = document.getElementById('cart-overlay');
   if (overlay) overlay.classList.add('open');
@@ -228,6 +255,7 @@ document.addEventListener('DOMContentLoaded', () => {
   renderCartPage();
   initPortfolioCoverflow();
   initFeatureCoverflow();
+  initDetailPhotoLightbox();
 
   // Mobile nav toggle
   const navToggle = document.querySelector('.nav-toggle');
