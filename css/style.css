@@ -294,6 +294,12 @@ section { padding: 84px 0; }
 }
 @media (max-width: 600px) {
   .sleek-grid.card-grid, .sleek-grid.card-grid.cols-3 { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .sleek-grid .card-actions .btn {
+    padding: 10px 12px;
+    font-size: 0.68rem;
+    letter-spacing: 0.03em;
+    white-space: nowrap;
+  }
 }
 
 /* ===== Link card (home page product/service tiles — whole box is the link) ===== */
