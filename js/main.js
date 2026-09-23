@@ -276,24 +276,65 @@ document.addEventListener('DOMContentLoaded', () => {
     btn.addEventListener('click', closeCart);
   });
 
-  // Consultation / quote forms — client-side only for now
+  // Consultation / quote forms — submit to Web3Forms
   document.querySelectorAll('form[data-quote-form]').forEach((form) => {
-    form.addEventListener('submit', (e) => {
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
-      // TODO: replace with a real submit to Formspree/Web3Forms once chosen.
-      // Currently just confirms locally and clears the cart if this was the
-      // quote-cart checkout form.
+
       const successEl = form.parentElement.querySelector('.form-success') || document.getElementById('form-success');
-      if (successEl) {
-        successEl.classList.add('show');
-        successEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      }
+      const errorEl = form.parentElement.querySelector('.form-error') || document.getElementById('form-error');
+      if (successEl) successEl.classList.remove('show');
+      if (errorEl) errorEl.classList.remove('show');
+
       if (form.dataset.quoteForm === 'cart') {
-        saveCart([]);
-        renderCartDrawer();
-        renderCartPage();
+        const itemsField = form.querySelector('#quote-items-field');
+        if (itemsField) {
+          const cart = getCart();
+          itemsField.value = cart.map((i) => `${i.name}${i.category ? ` (${i.category})` : ''}`).join(', ') || 'No items in list';
+        }
       }
-      form.reset();
+
+      const submitBtn = form.querySelector('button[type="submit"]');
+      const originalBtnText = submitBtn ? submitBtn.textContent : '';
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Sending...';
+      }
+
+      try {
+        const response = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: { Accept: 'application/json' },
+          body: new FormData(form),
+        });
+        const result = await response.json();
+
+        if (response.ok && result.success) {
+          if (successEl) {
+            successEl.classList.add('show');
+            successEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }
+          if (form.dataset.quoteForm === 'cart') {
+            saveCart([]);
+            renderCartDrawer();
+            renderCartPage();
+          }
+          form.reset();
+        } else {
+          throw new Error(result.message || 'Submission failed');
+        }
+      } catch (err) {
+        if (errorEl) {
+          errorEl.textContent = "Sorry, something went wrong sending your request. Please try again, or call/email us directly.";
+          errorEl.classList.add('show');
+          errorEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      } finally {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = originalBtnText;
+        }
+      }
     });
   });
 

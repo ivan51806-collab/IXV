@@ -420,6 +420,8 @@ section { padding: 84px 0; }
 .form-note { font-size: 0.8rem; color: var(--gray-500); margin-top: 14px; }
 .form-success { display: none; background: rgba(79,195,33,0.12); border: 1px solid var(--green); color: var(--green-light); padding: 16px 20px; border-radius: 8px; margin-bottom: 24px; font-weight: 600; font-size: 0.92rem; }
 .form-success.show { display: block; }
+.form-error { display: none; background: rgba(255,107,91,0.12); border: 1px solid var(--coral); color: var(--coral); padding: 16px 20px; border-radius: 8px; margin-bottom: 24px; font-weight: 600; font-size: 0.92rem; }
+.form-error.show { display: block; }
 
 /* ===== Cart drawer ===== */
 .cart-overlay {
