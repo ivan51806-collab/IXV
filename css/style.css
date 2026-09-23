@@ -264,6 +264,17 @@ section { padding: 84px 0; }
 .feature-item h4 { font-size: 1.05rem; margin-bottom: 2px; }
 .feature-item p { color: var(--gray-300); font-size: 0.88rem; }
 
+/* ===== Feature coverflow (mobile-only alternative to .feature-grid) ===== */
+.feature-coverflow { display: none; width: 100%; height: 190px; overflow: hidden; cursor: pointer; margin-top: 10px; }
+.feature-coverflow-slide {
+  flex: 0 0 auto; width: 210px; padding: 22px 18px;
+  display: flex; flex-direction: column; align-items: center; text-align: center; gap: 8px;
+  background: var(--charcoal-2); border-radius: var(--radius); margin: 0 10px;
+  border: 1px solid rgba(255,255,255,0.08);
+}
+.feature-coverflow-slide h4 { font-size: 1rem; margin-bottom: 0; }
+.feature-coverflow-slide p { color: var(--gray-300); font-size: 0.85rem; }
+
 /* ===== Section headers ===== */
 .section-heading { font-size: clamp(1.7rem, 3vw, 2.3rem); margin-bottom: 16px; }
 .section-copy { color: var(--gray-300); max-width: 640px; }
@@ -453,7 +464,8 @@ section { padding: 84px 0; }
 /* ===== Responsive ===== */
 @media (max-width: 900px) {
   section { padding: 56px 0; }
-  .feature-grid { grid-template-columns: 1fr; gap: 26px; }
+  .feature-grid { display: none; }
+  .feature-coverflow { display: block; }
   .split { grid-template-columns: 1fr; }
   .card-grid, .card-grid.cols-3 { grid-template-columns: repeat(2, 1fr); }
   .product-detail { grid-template-columns: 1fr; }

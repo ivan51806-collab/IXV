@@ -101,38 +101,20 @@ function renderCartPage() {
   });
 }
 
-function initPortfolioCoverflow() {
-  const root = document.getElementById('portfolio-coverflow');
-  const track = document.getElementById('coverflow-track');
-  if (!root || !track) return;
-
-  const PORTFOLIO_PHOTOS = [
-    'images/portfolio/portfolio1.jpg',
-    'images/portfolio/portfolio2.jpg',
-    'images/portfolio/portfolio3.jpg',
-    'images/portfolio/portfolio4.jpg',
-    'images/portfolio/portfolio5.jpg',
-    'images/portfolio/portfolio6.jpg',
-    'images/portfolio/portfolio7.jpg',
-    'images/portfolio/portfolio8.jpg',
-  ];
-  const n = PORTFOLIO_PHOTOS.length;
-
-  // Render 3 copies back-to-back so the track can loop seamlessly.
-  const slides = [];
-  for (let copy = 0; copy < 3; copy++) {
-    PORTFOLIO_PHOTOS.forEach((src, i) => {
-      const slide = document.createElement('div');
-      slide.className = 'coverflow-slide';
-      const img = document.createElement('img');
-      img.src = src;
-      img.alt = `IXV Landscape Design project ${i + 1}`;
-      img.loading = copy === 1 ? 'eager' : 'lazy';
-      slide.appendChild(img);
-      track.appendChild(slide);
-      slides.push(slide);
-    });
-  }
+// Shared engine behind any "coverflow" carousel: continuous autoplay,
+// center-largest scaling, and mouse-steered speed/direction. Assumes `track`
+// already contains 3 back-to-back copies of the slide set (for seamless
+// looping) and just animates whatever is there.
+function runCoverflow(root, track, opts) {
+  const slides = Array.from(track.children);
+  const n = slides.length / 3;
+  const {
+    baseSpeed = 0.32,
+    maxHoverSpeed = 5,
+    maxScale = 1.18,
+    minScale = 0.72,
+    minOpacity = 0.45,
+  } = opts || {};
 
   let containerWidth = 0;
   let step = 0;
@@ -147,11 +129,7 @@ function initPortfolioCoverflow() {
   window.addEventListener('resize', measure);
 
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const BASE_SPEED = reduceMotion ? 0 : 0.32; // px/frame — baseline autoplay drifts right to left
-  const MAX_HOVER_SPEED = 5; // px/frame at the far left/right edge of the carousel
-  const MAX_SCALE = 1.18;
-  const MIN_SCALE = 0.72;
-  const MIN_OPACITY = 0.45;
+  const BASE_SPEED = reduceMotion ? 0 : baseSpeed; // px/frame — baseline autoplay drifts right to left
 
   let t = 0;
   let speed = BASE_SPEED;
@@ -162,7 +140,7 @@ function initPortfolioCoverflow() {
     const rect = root.getBoundingClientRect();
     const ratio = Math.max(-1, Math.min(1, (e.clientX - rect.left - containerWidth / 2) / (containerWidth / 2)));
     // Left side of the carousel accelerates the existing left-drift; right side reverses it.
-    targetSpeed = -ratio * MAX_HOVER_SPEED;
+    targetSpeed = -ratio * maxHoverSpeed;
     if (ratio !== 0) lastDirection = ratio < 0 ? 1 : -1;
   });
   root.addEventListener('mouseleave', () => {
@@ -184,8 +162,8 @@ function initPortfolioCoverflow() {
     slides.forEach((el, i) => {
       const center = trackX + i * step + step / 2;
       const d = Math.abs(center - containerWidth / 2);
-      const scale = Math.max(MIN_SCALE, MAX_SCALE - (d / falloff) * (MAX_SCALE - MIN_SCALE));
-      const opacity = Math.max(MIN_OPACITY, 1 - d / fadeDist);
+      const scale = Math.max(minScale, maxScale - (d / falloff) * (maxScale - minScale));
+      const opacity = Math.max(minOpacity, 1 - d / fadeDist);
       el.style.transform = `scale(${scale.toFixed(3)})`;
       el.style.opacity = opacity.toFixed(2);
       el.style.zIndex = Math.round(scale * 100);
@@ -193,6 +171,46 @@ function initPortfolioCoverflow() {
     requestAnimationFrame(frame);
   }
   requestAnimationFrame(frame);
+}
+
+function initPortfolioCoverflow() {
+  const root = document.getElementById('portfolio-coverflow');
+  const track = document.getElementById('coverflow-track');
+  if (!root || !track) return;
+
+  const PORTFOLIO_PHOTOS = [
+    'images/portfolio/portfolio1.jpg',
+    'images/portfolio/portfolio2.jpg',
+    'images/portfolio/portfolio3.jpg',
+    'images/portfolio/portfolio4.jpg',
+    'images/portfolio/portfolio5.jpg',
+    'images/portfolio/portfolio6.jpg',
+    'images/portfolio/portfolio7.jpg',
+    'images/portfolio/portfolio8.jpg',
+  ];
+
+  // Render 3 copies back-to-back so the track can loop seamlessly.
+  for (let copy = 0; copy < 3; copy++) {
+    PORTFOLIO_PHOTOS.forEach((src, i) => {
+      const slide = document.createElement('div');
+      slide.className = 'coverflow-slide';
+      const img = document.createElement('img');
+      img.src = src;
+      img.alt = `IXV Landscape Design project ${i + 1}`;
+      img.loading = copy === 1 ? 'eager' : 'lazy';
+      slide.appendChild(img);
+      track.appendChild(slide);
+    });
+  }
+
+  runCoverflow(root, track, { baseSpeed: 0.32, maxHoverSpeed: 5, maxScale: 1.18, minScale: 0.72, minOpacity: 0.45 });
+}
+
+function initFeatureCoverflow() {
+  const root = document.getElementById('feature-coverflow');
+  const track = document.getElementById('feature-coverflow-track');
+  if (!root || !track) return;
+  runCoverflow(root, track, { baseSpeed: 0.28, maxHoverSpeed: 4, maxScale: 1.08, minScale: 0.85, minOpacity: 0.55 });
 }
 
 function openCart() {
@@ -209,6 +227,7 @@ document.addEventListener('DOMContentLoaded', () => {
   renderCartDrawer();
   renderCartPage();
   initPortfolioCoverflow();
+  initFeatureCoverflow();
 
   // Mobile nav toggle
   const navToggle = document.querySelector('.nav-toggle');
