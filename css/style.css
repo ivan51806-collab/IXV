@@ -265,7 +265,7 @@ section { padding: 84px 0; }
 .feature-item p { color: var(--gray-300); font-size: 0.88rem; }
 
 /* ===== Feature coverflow (mobile-only alternative to .feature-grid) ===== */
-.feature-coverflow { display: none; width: 100%; height: 130px; overflow: hidden; cursor: pointer; margin-top: 10px; }
+.feature-coverflow { display: none; width: 100%; height: 64px; overflow: hidden; cursor: pointer; margin-top: 10px; }
 .feature-coverflow-slide {
   flex: 0 0 auto; width: 230px;
   display: flex; align-items: center; text-align: left; gap: 14px;
