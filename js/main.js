@@ -213,6 +213,49 @@ function initFeatureCoverflow() {
   runCoverflow(root, track, { baseSpeed: 0.28, maxHoverSpeed: 4, maxScale: 1.08, minScale: 0.85, minOpacity: 0.55 });
 }
 
+function initVariantSelectors() {
+  document.querySelectorAll('.variant-selector').forEach((selector) => {
+    const wrap = selector.closest('.product-detail');
+    if (!wrap) return;
+    const fields = {
+      sku: wrap.querySelector('[data-field="sku"]'),
+      unit_type: wrap.querySelector('[data-field="unit_type"]'),
+      ignition: wrap.querySelector('[data-field="ignition"]'),
+      fuel: wrap.querySelector('[data-field="fuel"]'),
+      materials: wrap.querySelector('[data-field="materials"]'),
+      desc: wrap.querySelector('[data-field="desc"]'),
+      bullets: wrap.querySelector('[data-field="bullets"]'),
+    };
+    const addBtn = wrap.querySelector('[data-add-to-quote]');
+
+    selector.querySelectorAll('.variant-btn').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        selector.querySelectorAll('.variant-btn').forEach((b) => b.classList.remove('active'));
+        btn.classList.add('active');
+        const v = JSON.parse(atob(btn.dataset.variant));
+        if (fields.sku) fields.sku.textContent = v.sku;
+        if (fields.unit_type) fields.unit_type.textContent = v.unit_type;
+        if (fields.ignition) fields.ignition.textContent = v.ignition;
+        if (fields.fuel) fields.fuel.textContent = v.fuel;
+        if (fields.materials) fields.materials.textContent = v.materials;
+        if (fields.desc) fields.desc.textContent = v.desc;
+        if (fields.bullets) {
+          fields.bullets.innerHTML = '';
+          v.bullets.forEach((b) => {
+            const li = document.createElement('li');
+            li.textContent = b;
+            fields.bullets.appendChild(li);
+          });
+        }
+        if (addBtn) {
+          addBtn.dataset.id = v.id;
+          addBtn.dataset.name = v.name;
+        }
+      });
+    });
+  });
+}
+
 function initDetailPhotoLightbox() {
   const photos = document.querySelectorAll('.detail-photos img, .product-detail .thumb img');
   if (!photos.length) return;
@@ -256,6 +299,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initPortfolioCoverflow();
   initFeatureCoverflow();
   initDetailPhotoLightbox();
+  initVariantSelectors();
 
   // Mobile nav toggle
   const navToggle = document.querySelector('.nav-toggle');
