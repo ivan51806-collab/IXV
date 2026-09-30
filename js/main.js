@@ -214,7 +214,7 @@ function initFeatureCoverflow() {
 }
 
 function initDetailPhotoLightbox() {
-  const photos = document.querySelectorAll('.detail-photos img');
+  const photos = document.querySelectorAll('.detail-photos img, .product-detail .thumb img');
   if (!photos.length) return;
 
   const overlay = document.createElement('div');
