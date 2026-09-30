@@ -5,6 +5,17 @@
 
 const CART_KEY = 'ixv_quote_cart';
 
+// The cart drawer/page render on every page at every folder depth, so a
+// stored image path (root-relative, no leading slash) needs the right
+// number of "../" prepended depending on how deep the current page is.
+// Derive that prefix from the stylesheet link, which already encodes it.
+function getSitePrefix() {
+  const link = document.querySelector('link[rel="stylesheet"][href$="css/style.css"]');
+  if (!link) return '';
+  const href = link.getAttribute('href');
+  return href.slice(0, href.length - 'css/style.css'.length);
+}
+
 function getCart() {
   try {
     return JSON.parse(localStorage.getItem(CART_KEY)) || [];
@@ -54,9 +65,10 @@ function renderCartDrawer() {
     list.innerHTML = '<p class="cart-empty">Your quote list is empty.<br>Browse Services or Products and tap "Add to Quote."</p>';
     return;
   }
+  const prefix = getSitePrefix();
   list.innerHTML = cart.map((item) => `
     <div class="cart-line">
-      <div class="thumb">${item.image ? `<img src="${item.image}" alt="${item.name}">` : '<div class="placeholder-tile" style="font-size:0.5rem;">No Photo</div>'}</div>
+      <div class="thumb">${item.image ? `<img src="${prefix}${item.image}" alt="${item.name}">` : '<div class="placeholder-tile" style="font-size:0.5rem;">No Photo</div>'}</div>
       <div class="info">
         <h5>${item.name}</h5>
         <span>${item.category || ''}</span>
@@ -83,9 +95,10 @@ function renderCartPage() {
   }
   if (empty) empty.style.display = 'none';
   if (formWrap) formWrap.style.display = '';
+  const prefix = getSitePrefix();
   list.innerHTML = cart.map((item) => `
     <div class="cart-line" style="padding:16px; background:var(--charcoal); border-radius:8px;">
-      <div class="thumb">${item.image ? `<img src="${item.image}" alt="${item.name}">` : '<div class="placeholder-tile" style="font-size:0.5rem;">No Photo</div>'}</div>
+      <div class="thumb">${item.image ? `<img src="${prefix}${item.image}" alt="${item.name}">` : '<div class="placeholder-tile" style="font-size:0.5rem;">No Photo</div>'}</div>
       <div class="info">
         <h5>${item.name}</h5>
         <span>${item.category || ''}</span>
